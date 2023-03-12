@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <h1>Проектування консультаційної  системи для задачі консалтингу при виборі професії</h1>
+    <div class="content">
+        <div class="inputData">
+            <div class="profession">
+                <h2>Нечітке відношення професії – характеристики</h2>
+                <table id="prof_table"></table>
+            </div>
+            <div id="editForm_prof" class="myForm">
+                <label for="first_c_prof">Назва професії:</label>
+                <input type="text" id="first_c_prof"><br>
+        
+                <label for="second_c_prof">Швидкість та гнучкість мислення:</label>
+                <input type="text" id="second_c_prof"><br>
+        
+                <label for="third_c_prof">Вміння швидко приймати рішення:</label>
+                <input type="text" id="third_c_prof"><br>
+        
+                <label for="fourth_c_prof">Cтійкість та концентрація уваги:</label>
+                <input type="text" id="fourth_c_prof"><br>
+        
+                <label for="fifth_c_prof">Зорова пам’ять:</label>
+                <input type="text" id="fifth_c_prof"><br>
+        
+                <label for="sixth_c_prof">Швидкість реакції:</label>
+                <input type="text" id="sixth_c_prof"><br>
+        
+                <label for="seventh_c_prof">Рухлива пам’ять:</label>
+                <input type="text" id="seventh_c_prof"><br>
+        
+                <label for="eight_c_prof">Фізична  виносливість:</label>
+                <input type="text" id="eigth_c_prof"><br>
+        
+                <label for="ninth_c_prof">Координація рухів:</label>
+                <input type="text" id="ninth_c_prof"><br>
+        
+                <label for="ten_c_prof">Емоційно-вольова стійкість:</label>
+                <input type="text" id="ten_c_prof"><br>
+    
+                <label for="eleven_c_prof">Відповідальність:</label>
+                <input type="text" id="eleven_c_prof"><br>
+        
+                <button id="button_prof_save" onclick="saveChanges_p('editForm_prof')">Зберегти</button>
+            </div>
+            <br>
+            <div class="candidate">
+                <h2>Нечітке відношення  для  кандидатів вибору професії</h2>
+                <table id="cand_table"></table>
+            </div>
+            <div id="editForm_cand" class="myForm">
+                <label for="first_c_cand">Ім'я:</label>
+                <input type="text" id="first_c_cand"><br>
+        
+                <label for="second_c_cand">Швидкість та гнучкість мислення:</label>
+                <input type="text" id="second_c_cand"><br>
+        
+                <label for="third_c_cand">Вміння швидко приймати рішення:</label>
+                <input type="text" id="third_c_cand"><br>
+        
+                <label for="fourth_c_cand">Cтійкість та концентрація уваги:</label>
+                <input type="text" id="fourth_c_cand"><br>
+        
+                <label for="fifth_c_cand">Зорова пам’ять:</label>
+                <input type="text" id="fifth_c_cand"><br>
+        
+                <label for="sixth_c_cand">Швидкість реакції:</label>
+                <input type="text" id="sixth_c_cand"><br>
+        
+                <label for="seventh_c_cand">Рухлива пам’ять:</label>
+                <input type="text" id="seventh_c_cand"><br>
+        
+                <label for="eigth_c_cand">Фізична  виносливість:</label>
+                <input type="text" id="eigth_c_cand"><br>
+        
+                <label for="ninth_c_cand">Координація рухів:</label>
+                <input type="text" id="ninth_c_cand"><br>
+        
+                <label for="ten_c_cand">Емоційно-вольова стійкість:</label>
+                <input type="text" id="ten_c_cand"><br>
+    
+                <label for="eleven_c_cand">Відповідальність:</label>
+                <input type="text" id="eleven_c_cand"><br>
+        
+                <button id="button_cand_save" onclick="saveChanges_c('editForm_cand')">Зберегти</button>
+            </div>
+        </div>
+        <br>
+        <button id="calculate" class="calculate" onclick="createTable_Res('max-min'), createTable_Res('max-prod'), buildHist('graf_max-min'), buildHist('graf_max-prod')">Розрахувати</button>
+        <div class="inputData">
+            <div class="first_variant">
+                <h2 id="h2_res">max-min алгоритм</h2><br>
+                <table id="max-min"></table><br>
+            </div>
+            <div class="first_graf">
+                <canvas id="graf_max-min"></canvas><br>
+            </div>
+            <div class="second_variant">
+                <h2 id="h2_res_2">max-prod алгоритм</h2><br>
+                <table id="max-prod"></table><br>
+            </div>
+            <div class="second_graf">
+                <canvas id="graf_max-prod"></canvas>
+            </div>
+            <button id="fourthButton" onclick="location.reload()">Спочатку</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

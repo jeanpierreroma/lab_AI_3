@@ -1,0 +1,141 @@
+a:focus, a:active {outline: none;}
+a, a:visited {text-decoration: none; color: #fff;}
+a:hover {text-decoration: none;}
+
+body {
+    background-color: #38444c;
+    color: #f0f2f3;
+    font-family: Arial, sans-serif;
+}
+.content {
+    padding: 20px;
+    text-align: center;
+}
+h1 {
+    text-align: center;
+    color: #f0f2f3;
+}
+  
+h2 {
+    text-align: center;
+    align-items: center;
+    color: #f0f2f3;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+  
+button {
+    display: none;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+
+    margin: 0 auto;
+}
+button:hover {
+    background-color: #2d2d2d;
+}
+button:active {
+    background-color: #383838;
+    box-shadow: 0 3px #666;
+    transform: translateY(4px);
+}
+
+
+.table {
+    display: inline-block;
+    text-align: left;
+    display: none;
+}
+table {
+    /* width: 100%; */
+    margin: 20px 0;
+    border-collapse: collapse;
+    background-color: #556c7d;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05), 0px 2px 2px rgba(0, 0, 0, 0.08), 0px 4px 4px rgba(0, 0, 0, 0.1), 0px 8px 8px rgba(0, 0, 0, 0.12), 0px 16px 16px rgba(0, 0, 0, 0.14);
+}
+  
+th, td {
+    padding: 16px;
+    text-align: left;
+    border: 1px solid #fff;
+}
+
+th {
+    font-weight: bold;
+    background-color: #3f5363;
+    color: #fff;
+}
+
+/* стилі для першого рядка */
+tr:first-child {
+    background-color: #3f5363;
+    color: #fff;
+}
+/* стилі для першого стовпчика */ 
+tr td:first-child {
+    background-color: #3f5363;
+    color: #fff;
+}
+
+.graph {
+    display: none;
+    height: 400px;
+    width: 80%;
+    margin: 0 auto;
+
+}
+
+canvas {
+    display: 'inline-block';
+}
+
+.profession, .candidate {
+    display: inline-block;
+
+    margin: 20px;
+}
+
+.myForm {
+    display: none;
+    text-align: left;
+    margin: 0 auto;
+    background-color: #1c1f24;
+    color: #fff;
+    padding: 20px;
+    border: 1px solid #38444c;
+    border-radius: 5px;
+}
+  
+input[type="text"] {
+    background-color: #2b2f39;
+    color: #fff;
+    border: none;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.calculate {
+    display: inline-block;
+
+    padding: 10px;
+    border: none;
+    background-color: #333;
+    color: #fff;
+    border-radius: 10px;
+
+    text-align: center;
+    width: 400px;
+    height: 50px;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+#h2_res, #h2_res_2 {
+    display: none;
+}
