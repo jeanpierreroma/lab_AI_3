@@ -1,17 +1,17 @@
-const arr_1 = [
-    ["Менеджер", 0.9, 0.9, 0.8, 0.4, 0.5, 0.3, 0.6, 0.2, 0.9, 0.8],
-    ["Програміст", 0.8, 0.5, 0.9, 0.3, 0.1, 0.2, 0.2, 0.2, 0.5, 0.5],
-    ["Шофер", 0.3, 0.9, 0.6, 0.5, 0.9, 0.8, 0.9, 0.8, 0.6, 0.3],
-    ["Референт", 0.5, 0.4, 0.5, 0.5, 0.2, 0.2, 0.3, 0.3, 0.9, 0.8],
-    ["Перекладач", 0.7, 0.8, 0.8, 0.2, 0.6, 0.2, 0.2, 0.3, 0.3, 0.2]
-]
-const arr_2 = [
-    ["Олексій", 0.9, 0.6, 0.5, 0.5, 1, 0.4, 0.5, 0.5, 0.8, 0.3],
-    ["Антон", 0.8, 0.4, 0.2, 0.9, 0.6, 0.5, 0.8, 0.6, 1, 0.5],
-    ["Валентин", 0.7, 0.8, 0.3, 0.5, 0.5, 1, 0.9, 0.7, 0.2, 0.9],
-    ["Владислав", 0.9, 0.5, 0.8, 0.8, 0.7, 0.7, 0.5, 0.6, 0.5, 0.6],
-    ["Сергій", 1, 0.6, 0.7, 0.4, 0.4, 0.8, 0.4, 0.5, 0.6, 0.8]
-]
+// let arr_1 = [
+//     ["Менеджер", 0.9, 0.9, 0.8, 0.4, 0.5, 0.3, 0.6, 0.2, 0.9, 0.8],
+//     ["Програміст", 0.8, 0.5, 0.9, 0.3, 0.1, 0.2, 0.2, 0.2, 0.5, 0.5],
+//     ["Шофер", 0.3, 0.9, 0.6, 0.5, 0.9, 0.8, 0.9, 0.8, 0.6, 0.3],
+//     ["Референт", 0.5, 0.4, 0.5, 0.5, 0.2, 0.2, 0.3, 0.3, 0.9, 0.8],
+//     ["Перекладач", 0.7, 0.8, 0.8, 0.2, 0.6, 0.2, 0.2, 0.3, 0.3, 0.2]
+// ]
+// let arr_2 = [
+//     ["Олексій", 0.9, 0.6, 0.5, 0.5, 1, 0.4, 0.5, 0.5, 0.8, 0.3],
+//     ["Антон", 0.8, 0.4, 0.2, 0.9, 0.6, 0.5, 0.8, 0.6, 1, 0.5],
+//     ["Валентин", 0.7, 0.8, 0.3, 0.5, 0.5, 1, 0.9, 0.7, 0.2, 0.9],
+//     ["Владислав", 0.9, 0.5, 0.8, 0.8, 0.7, 0.7, 0.5, 0.6, 0.5, 0.6],
+//     ["Сергій", 1, 0.6, 0.7, 0.4, 0.4, 0.8, 0.4, 0.5, 0.6, 0.8]
+// ]
 const character = [
     "Швидкість та гнучкість мислення", 
     "Вміння швидко приймати рішення", 
@@ -24,29 +24,62 @@ const character = [
     "Емоційно-вольова стійкість", 
     "Відповідальність"
 ]
-let res = [];
-for(let i = 0; i < arr_1.length; i++) {
-    for(let j = 0; j < arr_2.length; j++) {
-        let tmp = [];
-        for(let k = 1; k < arr_1[i].length && k < arr_2[j].length; k++) {
-            tmp.push(Math.min(arr_1[i][k], arr_2[j][k]))
+
+function scanDataFromTable(id_table) {
+    let arr = [];
+    var rows = document.querySelectorAll(`#${id_table} tr`);
+
+    for (var i = 1; i < rows.length; i++) {
+        var cells = rows[i].querySelectorAll("td");
+        let tmp = [];  
+        for (let j = 0; j < cells.length; j++) {
+            if(j === 0) {
+                tmp.push(cells[j].textContent);
+                continue;
+            } else {
+                tmp.push(parseFloat(cells[j].textContent))
+            }
         }
-        // res.push(`${arr_2[j][0]} - ${arr_1[i][0]}: ${maxValue(tmp)}`)
-        res.push(maxValue(tmp));
+        arr.push(tmp)
     }
+
+    return arr;
 }
 
-let res_2 = [];
-for(let i = 0; i < arr_1.length; i++) {
-    for(let j = 0; j < arr_2.length; j++) {
-        let tmp = [];
-        for(let k = 1; k < arr_1[i].length && k < arr_2[j].length; k++) {
-            tmp.push(roundNumber(arr_1[i][k] * arr_2[j][k]))
+function calculateMax_Min() {
+    let res = [];
+    let arr_1 = scanDataFromTable('prof_table');
+    let arr_2 = scanDataFromTable('cand_table');
+    for(let i = 0; i < arr_1.length; i++) {
+        for(let j = 0; j < arr_2.length; j++) {
+            let tmp = [];
+            for(let k = 1; k < arr_1[i].length && k < arr_2[j].length; k++) {
+                tmp.push(Math.min(arr_1[i][k], arr_2[j][k]))
+            }
+            res.push(maxValue(tmp));
         }
-        // res_2.push(`${arr_2[j][0]} - ${arr_1[i][0]}: ${maxValue(tmp)}`)
-        res_2.push(maxValue(tmp));
     }
+
+    return res;
 }
+
+function calculateMax_Prod() {
+    let res_2 = [];
+    let arr_1 = scanDataFromTable('prof_table');
+    let arr_2 = scanDataFromTable('cand_table');
+    for(let i = 0; i < arr_1.length; i++) {
+        for(let j = 0; j < arr_2.length; j++) {
+            let tmp = [];
+            for(let k = 1; k < arr_1[i].length && k < arr_2[j].length; k++) {
+                tmp.push(roundNumber(arr_1[i][k] * arr_2[j][k]))
+            }
+            res_2.push(maxValue(tmp));
+        }
+    }
+
+    return res_2
+}
+
 
 createTable('prof_table')
 createTable('cand_table')
@@ -71,6 +104,21 @@ function roundNumber(number) {
 
 function createTable(id_name) {
     var table = document.getElementById(id_name);
+
+    let arr_1 = [
+        ["Менеджер", 0.9, 0.9, 0.8, 0.4, 0.5, 0.3, 0.6, 0.2, 0.9, 0.8],
+        ["Програміст", 0.8, 0.5, 0.9, 0.3, 0.1, 0.2, 0.2, 0.2, 0.5, 0.5],
+        ["Шофер", 0.3, 0.9, 0.6, 0.5, 0.9, 0.8, 0.9, 0.8, 0.6, 0.3],
+        ["Референт", 0.5, 0.4, 0.5, 0.5, 0.2, 0.2, 0.3, 0.3, 0.9, 0.8],
+        ["Перекладач", 0.7, 0.8, 0.8, 0.2, 0.6, 0.2, 0.2, 0.3, 0.3, 0.2]
+    ]
+    let arr_2 = [
+        ["Олексій", 0.9, 0.6, 0.5, 0.5, 1, 0.4, 0.5, 0.5, 0.8, 0.3],
+        ["Антон", 0.8, 0.4, 0.2, 0.9, 0.6, 0.5, 0.8, 0.6, 1, 0.5],
+        ["Валентин", 0.7, 0.8, 0.3, 0.5, 0.5, 1, 0.9, 0.7, 0.2, 0.9],
+        ["Владислав", 0.9, 0.5, 0.8, 0.8, 0.7, 0.7, 0.5, 0.6, 0.5, 0.6],
+        ["Сергій", 1, 0.6, 0.7, 0.4, 0.4, 0.8, 0.4, 0.5, 0.6, 0.8]
+    ]
 
     let tmp_arr = []
     if(id_name === "prof_table") {
@@ -148,6 +196,7 @@ for (var i = 1; i < rows_prof.length; i++) {
 function saveChanges_p(id_form) {
     document.getElementById(id_form).style.display = "none";
     const cells = selected_row_p.getElementsByTagName("td");
+    console.log(selected_row_p);
     let data = document.getElementById(id_form).querySelectorAll('input')
     for(let i = 0; i < data.length; i++) {
         cells[i].textContent = data[i].value
@@ -221,11 +270,15 @@ function createTable_Res(id_name) {
 
     makeVisual('h2_res', 'h2_res_2')
 
+    let arr_1 = scanDataFromTable('prof_table');
+    let arr_2 = scanDataFromTable('cand_table');
+    console.log(arr_1)
+
     let tmp_arr = []
     if(id_name === "max-min") {
-        tmp_arr = res;
+        tmp_arr = calculateMax_Min();
     } else {
-        tmp_arr = res_2;
+        tmp_arr = calculateMax_Prod();
     }
 
     var row = table.insertRow();
@@ -256,34 +309,22 @@ function createTable_Res(id_name) {
     document.getElementById('fourthButton').style.display = 'block'
 }
 
-let arr_name = []
-for(let i = 0; i < arr_2.length; i++) {
-    arr_name.push(arr_2[i][0])
-}
-let marks_1 = [];
-for (let i = 0, k = 0; i < arr_1.length; i++) {
-    let tmp = [];
-    for(let j = 0; j < arr_1.length; j++, k++) {
-        tmp.push(res[k]);
-    }
-    marks_1.push(tmp);
-}
-let marks_2 = [];
-for (let i = 0, k = 0; i < arr_1.length; i++) {
-    let tmp = [];
-    for(let j = 0; j < arr_1.length; j++, k++) {
-        tmp.push(res_2[k]);
-    }
-    marks_2.push(tmp);
-}
+
 
 function buildHist(id_chart) {
     var ctx = document.getElementById(id_chart).getContext('2d');
+
+    let arr_name = []
+    let arr_2 = scanDataFromTable('cand_table');
+    for(let i = 0; i < arr_2.length; i++) {
+        arr_name.push(arr_2[i][0])
+    }
+
     let marks;
     if(id_chart === "graf_max-min") {
-        marks = marks_1;
+        marks = calculateSomething(calculateMax_Min());
     } else {
-        marks = marks_2
+        marks = calculateSomething(calculateMax_Prod());
     }
         var myChart = new Chart(ctx, {
             type: 'bar',
@@ -340,4 +381,19 @@ function buildHist(id_chart) {
                 }
             }
         });
+}
+
+function calculateSomething(res) {
+    let arr_1 = scanDataFromTable('prof_table');
+    
+    let marks = [];
+    for (let i = 0, k = 0; i < arr_1.length; i++) {
+        let tmp = [];
+        for(let j = 0; j < arr_1.length; j++, k++) {
+            tmp.push(res[k]);
+        }
+        marks.push(tmp);
+    }
+
+    return marks;
 }
